@@ -1,50 +1,45 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
-export function d6(): number {
-    return 1 + Math.floor(Math.random() * 6);
-}
+const rollDie = () => Math.floor(Math.random() * 6) + 1;
 
-export function TwoDice(): React.JSX.Element {
-    const [leftDie, setLeftDie] = useState<number>(d6());
-    const [rightDie, setRightDie] = useState<number>(d6());
-    const [message, setMessage] = useState<string>("");
+export const TwoDice = () => {
+    const [leftDie, setLeftDie] = useState<number>(1);
+    const [rightDie, setRightDie] = useState<number>(6);
+    const [gameStatus, setGameStatus] = useState<string>("");
 
-    const checkForWinLoss = (left: number, right: number) => {
-        if (left === right) {
-            if (left === 1) {
-                setMessage("Lose");
-            } else {
-                setMessage("Win");
-            }
+    const checkGameStatus = (left: number, right: number) => {
+        if (left === 1 && right === 1) {
+            setGameStatus("Lose");
+        } else if (left === right) {
+            setGameStatus("Win");
         } else {
-            setMessage("");
+            setGameStatus("");
         }
     };
-
-    const rollLeftDie = () => {
-        const newLeft = d6();
+    const handleLeftRoll = () => {
+        const newLeft = rollDie();
         setLeftDie(newLeft);
-        checkForWinLoss(newLeft, rightDie);
+        checkGameStatus(newLeft, rightDie);
     };
 
-    const rollRightDie = () => {
-        const newRight = d6();
+    const handleRightRoll = () => {
+        const newRight = rollDie();
         setRightDie(newRight);
-        checkForWinLoss(leftDie, newRight);
+        checkGameStatus(leftDie, newRight);
     };
 
     return (
         <div>
-            <div>
-                <span data-testid="left-die">{leftDie}</span>
-                <Button onClick={rollLeftDie}>Roll Left</Button>
-            </div>
-            <div>
-                <span data-testid="right-die">{rightDie}</span>
-                <Button onClick={rollRightDie}>Roll Right</Button>
-            </div>
-            {message && <p>{message}</p>}
+            <div data-testid="left-die">{leftDie}</div>
+            <div data-testid="right-die">{rightDie}</div>
+            <Button onClick={handleLeftRoll}>
+                Roll Left
+            </Button>
+            <Button onClick={handleRightRoll}>
+                Roll Right
+            </Button>
+            {gameStatus && <div>{gameStatus}</div>}
         </div>
     );
-}
+};
