@@ -13,7 +13,7 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
     );
     return publishedQuestions;
 }
-
+ 
 /**
  * Consumes an array of questions and returns a new array of only the questions that are
  * considered "non-empty". An empty question has an empty string for its `body` and

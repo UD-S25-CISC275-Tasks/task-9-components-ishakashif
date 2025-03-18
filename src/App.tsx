@@ -5,10 +5,10 @@ import { RevealAnswer } from "./components/RevealAnswer";
 import { StartAttempt } from "./components/StartAttempt";
 import { TwoDice } from "./components/TwoDice";
 import { CycleHoliday } from "./components/CycleHoliday";
-// import { Counter } from "./components/Counter";
+import { Counter } from "./components/Counter";
 import { DoubleHalf } from "./bad-components/DoubleHalf";
 import { ColoredBox } from "./bad-components/ColoredBox";
-// import { ShoveBox } from "./bad-components/ShoveBox";
+import { ShoveBox } from "./bad-components/ShoveBox";
 import { ChooseTeam } from "./bad-components/ChooseTeam";
 
 function App(): React.JSX.Element {
@@ -24,9 +24,9 @@ function App(): React.JSX.Element {
             <hr></hr>
             <ColoredBox></ColoredBox>
             <hr></hr>
-            {/* <ShoveBox></ShoveBox> */}
+            <ShoveBox></ShoveBox>
             <hr></hr>
-            {/* <Counter></Counter> */}
+            <Counter></Counter>
             <hr />
             <RevealAnswer></RevealAnswer>
             <hr />
